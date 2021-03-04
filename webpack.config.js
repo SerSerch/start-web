@@ -1,6 +1,7 @@
 const path = require('path'),
   fs = require('fs'),
   HTMLplugin = require('html-webpack-plugin'),
+  AppCachePlugin = require('appcache-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
   OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
@@ -84,7 +85,12 @@ module.exports = {
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('dart-sass'),
+            },
+          },
         ],
       },
       {
@@ -154,7 +160,14 @@ module.exports = {
   plugins: [
     ...PAGES.map(page => new HTMLplugin ({
       template: path.resolve(__dirname, 'src', 'pages', page),
-      filename: `${page.replace(/\.pug/,'.html')}`
+      filename: `${page.replace(/\.pug/,'.html')}`,
+      minify: false,
+      meta: {
+        'viewport': 'width=device-width, initial-scale=1, shrink-to-fit=no',
+        'theme-color': '#00B8FC'
+      },
+      scriptLoading: 'defer',
+
     })),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
