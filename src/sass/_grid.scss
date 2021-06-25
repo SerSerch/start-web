@@ -16,20 +16,6 @@
 ._container {
   width: 100%;
   margin: 0 auto;
-  @media (min-width: $sm) {
-    max-width: 570px;
-  }
-  @media (min-width: $md) {
-    @media (orientation: landscape) {
-    }
-    max-width: 750px;
-  }
-  @media (min-width: $lg) {
-    max-width: 990px;
-  }
-  @media (min-width: $xl) {
-    max-width: 1170px;
-  }
 }
 
 ._row {
@@ -52,108 +38,111 @@
   }
 
   @for $i from 1 to 13 {
-    &-sm-#{$i} {
-      @extend ._col;
-      @media (min-width: $sm) {
-        @include col($i);
-      }
-    }
-
-    &-md-#{$i}{
-      @extend ._col;
-      @media (min-width: $md) {
-        @include col($i);
-      }
-    }
-
-    &-lg-#{$i}{
-      @extend ._col;
-      @media (min-width: $lg) {
-        @include col($i);
-      }
-    }
-
+    &-sm-#{$i},
+    &-md-#{$i},
+    &-lg-#{$i},
     &-xl-#{$i} {
       @extend ._col;
-      @media (min-width: $xl) {
-        @include col($i);
-      }
     }
   }
 }
 
 ._offset {
   margin-left: auto;
-  @for $i from 0 to 6 {
+
+  @for $i from 0 to 7 {
     &-#{$i} {
-      @extend ._offset;
       @include offset($i);
-    }
-
-    &-sm-#{$i} {
-      @extend ._offset;
-      @media (min-width: $sm) {
-        @include offset($i);
-      }
-    }
-
-    &-md-#{$i}{
-      @extend ._offset;
-      @media (min-width: $md) {
-        @include offset($i);
-      }
-    }
-
-    &-lg-#{$i}{
-      @extend ._offset;
-      @media (min-width: $lg) {
-        @include offset($i);
-      }
-    }
-
-    &-xl-#{$i} {
-      @extend ._offset;
-      @media (min-width: $xl) {
-        @include offset($i);
-      }
     }
   }
 }
 
 ._ml {
   margin-right: auto;
-  @for $i from 0 to 6 {
+
+  @for $i from 0 to 7 {
     &-#{$i} {
-      @extend ._ml;
       @include ml($i);
     }
+  }
+}
 
-    &-sm-#{$i} {
-      @extend ._ml;
-      @media (min-width: $sm) {
-        @include ml($i);
-      }
+@media (min-width: $sm) {
+  ._container {
+    max-width: 570px;
+  }
+
+  @for $i from 1 to 13 {
+    ._col-sm-#{$i} {
+      @include col($i);
     }
 
-    &-md-#{$i}{
-      @extend ._ml;
-      @media (min-width: $md) {
-        @include ml($i);
-      }
+    ._offset-sm-#{$i} {
+      @include offset($i);
     }
 
-    &-lg-#{$i}{
-      @extend ._ml;
-      @media (min-width: $lg) {
-        @include ml($i);
-      }
+    ._ml-sm-#{$i} {
+      @include ml($i);
+    }
+  }
+}
+
+@media (min-width: $md) {
+  ._container {
+    max-width: 750px;
+  }
+
+  @for $i from 1 to 13 {
+    ._col-md-#{$i} {
+      @include col($i);
     }
 
-    &-xl-#{$i} {
-      @extend ._ml;
-      @media (min-width: $xl) {
-        @include ml($i);
-      }
+    ._offset-md-#{$i} {
+      @include offset($i);
+    }
+
+    ._ml-md-#{$i} {
+      @include ml($i);
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  ._container {
+    max-width: 990px;
+  }
+
+  @for $i from 1 to 13 {
+    ._col-lg-#{$i} {
+      @include col($i);
+    }
+
+    ._offset-lg-#{$i} {
+      @include offset($i);
+    }
+
+    ._ml-lg-#{$i} {
+      @include ml($i);
+    }
+  }
+}
+
+@media (min-width: $xl) {
+  ._container {
+    max-width: 1170px;
+  }
+
+  @for $i from 1 to 13 {
+    ._col-xl-#{$i} {
+      @include col($i);
+    }
+
+    ._offset-xl-#{$i} {
+      @include offset($i);
+    }
+
+    ._ml-xl-#{$i} {
+      @include ml($i);
     }
   }
 }
